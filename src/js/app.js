@@ -14,7 +14,6 @@ import "../style/index.css";
         github: null,
         linkedin: null,
         instagram: null,
-
         name: null,
         lastname: null,
         role: null,
@@ -28,7 +27,6 @@ function render(variables = {}) {
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
-
   let name = variables.name !== null ? variables.name : "Lucy";
   let lastname = variables.lastname !== null ? variables.lastname : "Boilett";
   let socialMediaPosition =
@@ -44,24 +42,33 @@ function render(variables = {}) {
     variables.instagram !== null ? variables.instagram : "4geeksacademy";
   let role = variables.role !== null ? variables.role : "Web Developer";
   let city = variables.city !== null ? variables.city : "Miami";
-
+  let country = variables.country !== null ? variables.country : " ";
+  if (city == "Miami") {
+    country = "USA";
+  } else if (city == "Munich") {
+    country = "Germany";
+  } else if (city == "Caracas") {
+    country = "Venezuela";
+  } else {
+    country = "Canada";
+  }
   // reset the website body with the new html output
+
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
           <h1>${name} ${lastname}</h1>
           <h2>${role}</h2>
-          <h3>${city} ${country}</h3>
+          <h3>${city}, ${country}</h3>
           <ul class="${socialMediaPosition}">
-            <li><a href="https://twitter.com/${twitter}"><i class="fab fa-twitter"></i></a></li>
-            <li><a href="https://github.com/${github}"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/in/${linkedin}"><i class="fab fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/${instagram}"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/${twitter}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+            <li><a href="https://github.com/${github}" target="_blank"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/in/${linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+            <li><a href="https://instagram.com/${instagram}" target="_blank"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
 }
-
 /**
  * Don't change any of the lines below, here is where we do the logic for the dropdowns
  */
@@ -77,7 +84,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: null,
+    github: "alesanchezr",
     linkedin: null,
     instagram: null,
     name: null,
